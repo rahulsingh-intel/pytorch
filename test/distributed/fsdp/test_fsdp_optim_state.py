@@ -1870,9 +1870,8 @@ class TestFSDPOptimState(FSDPTest):
             FSDP.optim_state_dict(model, optim), osd, check_same_param_keys=True
         )
         step()
-        osd_to_load = FSDP.optim_state_dict_to_load(  # noqa: F841
-            model, optim, osd, load_directly=True
-        )
+        
+        FSDP.optim_state_dict_to_load(model, optim, osd, load_directly=True)
         self._check_same_state(
             optim.state_dict(), original_osd, check_same_param_keys=True
         )
